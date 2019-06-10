@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Кадиров](https://up.htmlacademy.ru/javascript/17/user/439263).
-* Наставник: [Владислав Молчанов] (https://htmlacademy.ru/profile/id137398).
+* Наставник: [Владислав Молчанов](https://htmlacademy.ru/profile/id137398).
 
 ---
 
