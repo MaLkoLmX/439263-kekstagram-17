@@ -1,7 +1,8 @@
 'use strict';
 var OBJECT_NUMBERS = 25;
-var COMENTS = ['Все отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.'];
+var COMMENTS = ['Все отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.'];
 var NAMES = ['Денис', 'Илья', 'Елена', 'Ангелина', 'Анастасия', 'Артем'];
+var avatars = [];
 
 var picture = document.querySelector('#picture').content.querySelector('.picture');
 var pictures = document.querySelector('.pictures');
@@ -16,16 +17,19 @@ function getRandomValue(arr) {
 }
 
 function getRandomPhoto() {
-  var avatars = {
-    avatar: 'photos/' + getRandomNumber(1, OBJECT_NUMBERS) + '.jpg',
-    message: COMENTS[getRandomValue(COMENTS)],
-    like: getRandomNumber(15, 200),
-    name: NAMES[getRandomValue(NAMES)]
+
+  var avatar = {
+    photo: 'photos/' + getRandomNumber(1, OBJECT_NUMBERS) + '.jpg',
+    comment: {
+      avatar: 'img/avatar-' + getRandomNumber(1, 7) + '.svg',
+      message: COMMENTS[getRandomValue(COMMENTS)],
+      name: NAMES[getRandomValue(NAMES)]
+    },
+    like: getRandomNumber(15, 200)
   };
-  return avatars;
+  return avatar;
 }
 
-var avatars = [];
 for (var i = 0; i < 25; i++) {
   var avatar = getRandomPhoto();
   avatars.push(avatar);
@@ -33,13 +37,13 @@ for (var i = 0; i < 25; i++) {
 
 function renderAvatar(arr) {
   var element = picture.cloneNode(true);
-  element.querySelector('.picture__comments').textContent = arr.message;
-  element.querySelector('.picture__likes').textContent = arr.like;
-  element.querySelector('.picture__img').src = arr.avatar;
+  element.querySelector('.picture__comments').textContent = arr[i].comment.message.length;
+  element.querySelector('.picture__likes').textContent = arr[i].like;
+  element.querySelector('.picture__img').src = arr[i].photo;
   return element;
 }
 
-for (var i = 0; i < 25; i++) {
+for (i = 0; i < 25; i++) {
   fragment.appendChild(renderAvatar(avatars));
 }
 pictures.appendChild(fragment);
