@@ -17,7 +17,6 @@ function getRandomValue(arr) {
 }
 
 function getRandomPhoto() {
-
   var avatar = {
     photo: 'photos/' + getRandomNumber(1, OBJECT_NUMBERS) + '.jpg',
     comment: {
@@ -30,37 +29,20 @@ function getRandomPhoto() {
   return avatar;
 }
 
-// for (var i = 0; i < OBJECT_NUMBERS; i++) {
-//   var avatar = getRandomPhoto();
-//   avatars.push(avatar);
-// }
+for (var i = 0; i < OBJECT_NUMBERS; i++) {
+  var avatar = getRandomPhoto();
+  avatars.push(avatar);
+}
 
-function renderAvatar() {
-  for (var i = 0; i < OBJECT_NUMBERS; i++) {
-    var avatar = getRandomPhoto();
+function renderAvatar(arr) {
+  for (i = 0; i < OBJECT_NUMBERS; i++) {
     var element = picture.cloneNode(true);
-    avatars.push(avatar);
-
-    element.querySelector('.picture__comments').textContent = avatars[i].comment.message.length;
-    element.querySelector('.picture__likes').textContent = avatars[i].like;
-    element.querySelector('.picture__img').src = avatars[i].photo;
+    element.querySelector('.picture__comments').textContent = arr[i].comment.message.length;
+    element.querySelector('.picture__likes').textContent = arr[i].like;
+    element.querySelector('.picture__img').src = arr[i].photo;
     fragment.appendChild(element);
   }
-  // var element = picture.cloneNode(true);
-  // element.querySelector('.picture__comments').textContent = avatars[i].comment.message.length;
-  // element.querySelector('.picture__likes').textContent = avatars[i].like;
-  // element.querySelector('.picture__img').src = avatars[i].photo;
-  //
-  // for (i = 0; i < OBJECT_NUMBERS; i++) {
-  //   fragment.appendChild(element);
-  // }
-
   return fragment;
 }
 
-pictures.appendChild(renderAvatar());
-
-// for (i = 0; i < OBJECT_NUMBERS; i++) {
-//   fragment.appendChild(renderAvatar(avatars));
-// }
-// pictures.appendChild(fragment);
+pictures.appendChild(renderAvatar(avatars));
