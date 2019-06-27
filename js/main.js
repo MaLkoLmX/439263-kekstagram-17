@@ -121,5 +121,41 @@ function onEffectsChange(evt) {
   }
 }
 
+var imgEffect = overlay.querySelector('.img-upload__effects');
+var effectLevelPin = overlay.querySelector('.effect-level__pin');
+var effectLevelDepth = overlay.querySelector('.effect-level__depth');
+var checkedInput = imgEffect.querySelector('input:checked');
+
+function onEffectPinMouseup(number) {
+  var filterValue;
+  switch (checkedInput.value) {
+    case 'chrome':
+      filterValue = 'grayscale(' + number / 100 + ')';
+      break;
+    case 'sepia':
+      filterValue = 'sepia(' + number / 100 + ')';
+      break;
+    case 'marvin':
+      filterValue = 'invert(' + number + '%)';
+      break;
+    case 'phobos':
+      filterValue = 'blur(' + 3 * number / 100 + 'px)';
+      break;
+    case 'heat':
+      filterValue = 'brightness(' + 3 * number / 100 + ')';
+      break;
+    default:
+      imgWrapper.style.filter = 'none';
+  }
+  imgWrapper.style.filter = filterValue;
+  effectLevelPin.style.left = number + '%';
+  effectLevelDepth.style.width = number + '%';
+}
+
+
 uploadScale.addEventListener('click', onScaleLevelClick);
 effectsList.addEventListener('change', onEffectsChange);
+effectLevelPin.addEventListener('mouseup', function (evt) {
+  evt.preventDefault();
+  onEffectPinMouseup(60);
+});
