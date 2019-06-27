@@ -59,10 +59,12 @@ function onPopupEscPress(evt) {
     closeOverlay();
   }
 }
+
 function openOverlay() {
   overlay.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 }
+
 function closeOverlay() {
   overlay.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
@@ -126,7 +128,7 @@ var effectLevelPin = overlay.querySelector('.effect-level__pin');
 var effectLevelDepth = overlay.querySelector('.effect-level__depth');
 var checkedInput = imgEffect.querySelector('input:checked');
 
-function onEffectPinMouseup(number) {
+function getPinEffect(number) {
   var filterValue;
   switch (checkedInput.value) {
     case 'chrome':
@@ -157,5 +159,5 @@ uploadScale.addEventListener('click', onScaleLevelClick);
 effectsList.addEventListener('change', onEffectsChange);
 effectLevelPin.addEventListener('mouseup', function (evt) {
   evt.preventDefault();
-  onEffectPinMouseup(60);
+  getPinEffect(60);
 });
