@@ -53,9 +53,10 @@ var ENTER_KEYCODE = 13;
 var uploadFile = document.querySelector('#upload-file');
 var uploadClose = document.querySelector('#upload-cancel');
 var overlay = document.querySelector('.img-upload__overlay');
+var description = overlay.querySelector('.text__description');
 
 function onPopupEscPress(evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  if (evt.keyCode === ESC_KEYCODE && !(document.activeElement === description)) {
     closeOverlay();
   }
 }
